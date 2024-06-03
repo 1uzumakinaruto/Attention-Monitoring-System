@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Title</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <style>
+    body {
+    font-family: "Open Sans", sans-serif;
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwVPccyT7hmy_SMSIkyF32pIQa-PgkSFqYLRqreP1KMw&usqp=CAU&ec=48665698');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  /*--------------------------------------------------------------
+  # Sections General
+  --------------------------------------------------------------*/
+  section {
+    margin: 8vh;
+    /* padding: 60px 0; */
+    overflow: hidden;
+    /* width: 50%; */
+    padding: 25px;
+    /* height: 90vh; */
+    box-shadow: 0px 0 5px rgba(42, 44, 57, 0.25);
+    background-color: aliceblue;
+  }
+  
+  .portfolio-details {
+    margin-top: 25px;
+  }
+
+  .portfolio-details .portfolio-info {
+    padding: 10px 30px;
+    /* height: 82vh; */
+  }
+
+  .portfolio-details .portfolio-info h3 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgb(188, 178, 178);
+    text-align: center;
+  }
+
+  </style>
+
+</head>
+
+<body>
+  {% block content %}
+ 
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">CLASSROOM</a>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/"> Add Student </a></li>
+        <li><a href="/perform"> Performance</a></li>
+        <li><a href="/attendance"> View Attendance</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    
+    <section id="portfolio" class="portfolio-details">
+      <div class="row">
+
+          <div class="col-lg-6">
+            <div class="portfolio-info">
+              <h3>ADD STUDENT</h3>
+              <form action="/create_datsets" method="POST" >
+                <div class="form-group">
+                  <!-- <label for="Id"></label> -->
+                  <input type="text" class="form-control" id="Id" name="Id" value="{{ID}}" readonly>
+                </div>
+                <div class="form-group">
+                  <!-- <label for="Name">:</label> -->
+                  <input type="text" placeholder="Student Name" class="form-control" id="Name" name="Name">
+                </div>
+                <div class="form-group">
+                  <!-- <label for="Phone">:</label> -->
+                  <input type="tel" placeholder="Phone No." class="form-control" id="Phone" name="Phone">
+                </div>
+                <div class="form-group">
+                  <!-- <label for="Email">:</label> -->
+                  <input type="email" placeholder="Email Id" class="form-control" id="Email" name="Email">
+                </div>
+                <div class="form-group">
+                  <!-- <label for="pwd">Semester:</label> -->
+                    <select name="Sem" id="Sem" class="form-control">
+                        <option value="1st">1st semester</option>
+                        <option value="2nd">2nd semester</option>
+                        <option value="3rd">3rd semester</option>
+                        <option value="4th">4th semester</option>
+                        <option value="5th">5th semester</option>
+                        <option value="6th">6th semester</option>
+                        <option value="7th">7th semester</option>
+                        <option value="8th">8th semester</option>
+                       
+                    </select>
+                </div>
+                <div class="form-group">
+                  <!-- <label for="pwd">Branch:</label> -->
+                    <select name="Cource" id="Cource" class="form-control">
+                        <option value="MBA">MBA</option>
+                        <option value="be">B.Tech</option>
+                        <option value="mt">M.Tech</option>
+                        
+
+                    </select>
+                </div>
+                <div class="form-group">
+                  <!-- <label for="pwd">Branch:</label> -->
+                    <select name="Branch" id="Branch" class="form-control">
+                        <option value="ADS">Airtificial Intelligence and Data Science</option>
+                        <option value="CS">Computer Science & Engineering</option>
+                        <option value="CE">Civil Engineering</option>
+                        <option value="ME">Mechanical Engineering</option>
+                        <option value="EC">Electronics & Communication</option>
+                        <option value="EE">Electrical & Electronics Engineering</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success form-control">Submit</button>
+              </form>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+
+              <div class="portfolio-info">
+                <h3>Updates</h3>
+                {% if msg %}
+                  {% for mg in msg %}
+                  <h4>{{mg}}</h4>
+                  {% endfor %}
+                {% endif %}
+                
+                {% if image %}
+                <img src="{{image}}" style="width: 100%;">
+                {% endif %}
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+{% endblock content %}
+</body>
+</html>

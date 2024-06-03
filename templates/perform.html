@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Title</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <style>
+    body {
+    font-family: "Open Sans", sans-serif;
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwVPccyT7hmy_SMSIkyF32pIQa-PgkSFqYLRqreP1KMw&usqp=CAU&ec=48665698');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  /*--------------------------------------------------------------
+  # Sections General
+  --------------------------------------------------------------*/
+  section {
+    margin-top: 8vh;
+    padding: 25px;
+    overflow: hidden;
+    height: 80vh;
+    box-shadow: 0px 0 5px rgba(42, 44, 57, 0.25);
+    background-color: aliceblue;
+  }
+  
+  .portfolio-details {
+    margin-top: 25px;
+  }
+
+  .portfolio-details .portfolio-info {
+    padding: 10px 30px;
+    /* height: 82vh; */
+  }
+
+  .portfolio-details .portfolio-info h3 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgb(188, 178, 178);
+    text-align: center;
+  }
+
+  </style>
+
+</head>
+
+<body>
+  {% block content %}
+ 
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">CLASSROOM</a>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/"> Add Student </a></li>
+        <li><a href="/perform"> Performance</a></li>
+        <li><a href="/attendance"> View Attendance</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    
+    <section id="portfolio" class="portfolio-details">
+      <div class="row">
+          <div class="col-lg-4">
+            <div class="portfolio-info">
+                    <h3>Emotions detection</h3>
+                      <a href="/emotions" class="btn btn-success form-control">Live detection</a>
+                      <br><br>
+
+                      <h4>Search by name</h4>
+                      <form action="/Search" method="POST" class="form-inline" style="display: flex;">
+                        <!-- <label for="pwd">Semester:</label> -->
+                          <select name="name" id="name" class="form-control" style="width: 80%;">
+                              {% for name in Names %}
+                              <option value="{{name}}">{{name}}</option>
+                              {% endfor %}
+                          </select>
+                          &nbsp; &nbsp; &nbsp;
+                      <button type="submit" class="btn btn-success">Submit</button>
+                      </form>
+                      <br><br>
+
+                      <h3>Attention and Behaviour</h3>
+                      <a href="/proctoring" class="btn btn-success form-control">Live detection</a>
+                    
+                    </div>
+                </div>
+
+          <div class="col-lg-8">
+                    <div class="portfolio-info">
+                      <h3>Updates</h3>
+                      {% if msg %}
+                        {% for mg in msg %}
+                        <h4>{{mg}}</h4>
+                        {% endfor %}
+                      {% endif %}
+                      
+                      {% if image %}
+                      <img src="{{image}}" style="width: 100%;">
+                      {% endif %}
+                    </div>
+                  </div>
+             </div>
+    </section>
+  </div>
+{% endblock content %}
+</body>
+</html>
